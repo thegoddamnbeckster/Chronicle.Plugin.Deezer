@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Chronicle.Plugin.Deezer</AssemblyName>
+    <RootNamespace>Chronicle.Plugin.Deezer</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Chronicle/src/Chronicle.Plugins/Chronicle.Plugins.csproj" />
+  </ItemGroup>
+</Project>
