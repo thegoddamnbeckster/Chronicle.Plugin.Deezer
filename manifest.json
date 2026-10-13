@@ -1,9 +1,31 @@
 {
-  "plugin_id": "chronicle.plugin.deezer",
-  "name": "Deezer",
-  "version": "1.0.0",
-  "author": "thegoddamnbeckster",
-  "entry_type": "metadata",
-  "min_chronicle_version": "1.0.0",
-  "supported_media_types": ["music", "album", "artist"]
+  "plugin_id":   "chronicle.plugin.deezer",
+  "name":        "Deezer",
+  "version":     "1.0.0",
+  "author":      "Chronicle Contributors",
+  "description": "Music metadata from Deezer: artist pictures, album covers up to 1900x1900, genres, labels, release dates, track lists, and ISRC and UPC codes. No API key or account required. A third source beside MusicBrainz and Last.fm, strongest for singles, remixes and recent releases.",
+  "min_chronicle_version": "0.7.0",
+  "entry_type":  "Chronicle.Plugin.Deezer.DeezerMetadataProvider",
+  "iconUrl":     "https://www.deezer.com/favicon.ico",
+  "brandColorLight": "#A238FF",
+  "brandColorDark":  "#C58CFF",
+  "fixMatchHint": "Enter a Deezer id with its kind (artist:27, album:302127, track:3135556), a deezer.com artist, album or track URL, isrc: followed by a track's ISRC, or upc: followed by an album's UPC.",
+  "supported_media_types": ["music"],
+  "background_tasks": [
+    {
+      "task_id":         "fetch-missing-metadata",
+      "display_name":    "Fetch Missing Music Metadata",
+      "description":     "Looks up Deezer metadata for artists, albums and tracks that have not been enriched by Deezer yet.",
+      "default_cron":    "50 4 * * *",
+      "default_enabled": true
+    },
+    {
+      "task_id":         "resync-all-metadata",
+      "display_name":    "Re-sync All Music Metadata",
+      "description":     "Re-fetches all Deezer metadata to pick up new covers and corrected genres. Slow on a large library.",
+      "default_cron":    "20 4 * * 1",
+      "default_enabled": false
+    }
+  ],
+  "settings": []
 }
