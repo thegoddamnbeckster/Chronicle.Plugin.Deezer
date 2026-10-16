@@ -88,6 +88,16 @@ public class ClientTests
         Assert.Empty(await fake.Client().SearchTracksAsync("???", 10, CancellationToken.None));
     }
 
+    [Theory]
+    [InlineData("Wrong parameter")]
+    [InlineData("empty parameter")]
+    public async Task AParameterErrorDeezerReportsAs500_IsNotFound_NotAFailure(string message)
+    {
+        // Live: an album called "+" and a folder called "(2023)" made Deezer answer error 500 on every pass, and the item failed each time.
+        var fake = new FakeDeezer { Answer200 = "{\"error\":{\"type\":\"ParameterException\",\"message\":\"" + message + "\",\"code\":500}}" };
+        Assert.Empty(await fake.Client().SearchAlbumsAsync("+", 10, CancellationToken.None));
+    }
+
     [Fact]
     public async Task AnUnknownErrorCode_Propagates()
     {

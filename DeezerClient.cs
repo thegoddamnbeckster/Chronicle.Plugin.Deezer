@@ -13,7 +13,7 @@ namespace Chronicle.Plugin.Deezer;
 /// Chronicle reads as "the provider is rate limited" and answers by leaving the item Pending instead of marking it not found.
 ///
 /// Deezer reports many problems as HTTP 200 with a JSON body {"error":{"code":N}}: 4 is the quota, 700 is "service busy" (both
-/// become a 429/503 exception), 800 is "no data" (a normal "not found", returned as null), 600 is a query Deezer could not parse
+/// become a 429/503 exception), 800 is "no data" (a normal "not found", returned as null), 600 (or 500, "wrong parameter") is a query Deezer could not parse
 /// (logged and treated as "not found": the plugin sent something Deezer disliked, which must not fail the whole pass), and
 /// anything else is an error that propagates. An unchecked 200 would have read as "found, nothing in it".
 ///
@@ -28,6 +28,8 @@ internal sealed class DeezerClient : IDisposable
     public const int CodeQuota = 4;
     public const int CodeServiceBusy = 700;
     public const int CodeBadQuery = 600;
+    /// <summary>Deezer's ParameterException ("Wrong parameter", "empty parameter"): a query it cannot use, such as one that is nothing but a symbol.</summary>
+    public const int CodeBadParameter = 500;
     public const int CodeNoData = 800;
 
     private static readonly JsonSerializerOptions Json = new() { PropertyNameCaseInsensitive = true };
@@ -146,6 +148,7 @@ internal sealed class DeezerClient : IDisposable
                     case CodeNoData:
                         return null;
                     case CodeBadQuery:
+                    case CodeBadParameter:
                         _log.Warning("Deezer could not parse the query for {Path}: {Message}", pathAndQuery, error.Message);
                         return null;
                     default:
