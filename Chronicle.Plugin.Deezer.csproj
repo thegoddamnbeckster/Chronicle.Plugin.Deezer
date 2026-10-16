@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>Chronicle.Plugin.Deezer</AssemblyName>
     <RootNamespace>Chronicle.Plugin.Deezer</RootNamespace>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Chronicle Contributors</Authors>
     <Description>Deezer music metadata plugin for Chronicle: artist pictures, album covers, genres, labels, ISRC and UPC codes. No API key required.</Description>
   </PropertyGroup>

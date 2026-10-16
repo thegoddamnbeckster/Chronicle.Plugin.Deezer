@@ -105,7 +105,7 @@ public class ConfigurationTests
         var provider = new DeezerMetadataProvider();
         provider.Configure(new Dictionary<string, string>());   // no key, no account: nothing to be missing
 
-        Assert.Equal("Chronicle-Deezer/1.0.0", provider.ConfiguredUserAgent);
+        Assert.Equal("Chronicle-Deezer/1.0.1", provider.ConfiguredUserAgent);
         provider.Dispose();
     }
 

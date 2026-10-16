@@ -7,7 +7,7 @@ Music metadata plugin for [Chronicle](https://github.com/thegoddamnbeckster/Chro
 Fetches artist pictures, album covers (up to 1900x1900), genres, labels, release dates, track lists and ISRC / UPC codes from [Deezer](https://www.deezer.com/). A third source beside MusicBrainz (identity) and Last.fm (text), with no API key and no account. It is strongest where MusicBrainz is thin: singles, remixes, live tracks and recent releases.
 
 **Plugin ID:** `chronicle.plugin.deezer`
-**Version:** 1.0.0
+**Version:** 1.0.1
 **Auth:** None (no API key or account required)
 
 ---
