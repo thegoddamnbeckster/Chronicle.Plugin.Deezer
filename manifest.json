@@ -6,6 +6,9 @@
   "description": "Music metadata from Deezer: artist pictures, album covers up to 1900x1900, genres, labels, release dates, track lists, and ISRC and UPC codes. No API key or account required. A third source beside MusicBrainz and Last.fm, strongest for singles, remixes and recent releases.",
   "min_chronicle_version": "0.7.0",
   "entry_type":  "Chronicle.Plugin.Deezer.DeezerMetadataProvider",
+  "sourceUrls": [
+    { "match": "^artist:(\\d+)", "url": "https://www.deezer.com/artist/$1" }
+  ],
   "iconUrl":     "https://www.deezer.com/favicon.ico",
   "brandColorLight": "#A238FF",
   "brandColorDark":  "#C58CFF",
