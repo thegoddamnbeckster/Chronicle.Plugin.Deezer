@@ -26,7 +26,7 @@ public sealed class DeezerMetadataProvider : IMetadataProvider, IDisposable
 {
     public string PluginId => "chronicle.plugin.deezer";
     public string Name     => "Deezer";
-    public string Version  => "1.0.1";
+    public string Version  => System.Reflection.CustomAttributeExtensions.GetCustomAttribute<System.Reflection.AssemblyInformationalVersionAttribute>(typeof(DeezerMetadataProvider).Assembly)?.InformationalVersion.Split('+')[0] ?? "1.0.2";
     public string Author   => "Chronicle Contributors";
 
     public const string KeyCoverSize = "cover_size";
