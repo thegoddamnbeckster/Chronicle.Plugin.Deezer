@@ -56,6 +56,7 @@ public class ClientTests
         var ex = await Assert.ThrowsAsync<HttpRequestException>(() => fake.Client().GetArtistAsync(27, CancellationToken.None));
 
         Assert.Equal(HttpStatusCode.TooManyRequests, ex.StatusCode);
+        Assert.Equal(TimeSpan.FromSeconds(120), ex.Data["RetryAfter"]);   // what Deezer asked for, so Chronicle's queue holds the item that long
         Assert.Equal(1, fake.Requests);
         Assert.DoesNotContain(TimeSpan.FromSeconds(120), fake.Delays);
     }

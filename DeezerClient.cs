@@ -168,7 +168,8 @@ internal sealed class DeezerClient : IDisposable
     }
 
     private static HttpRequestException RateLimited(TimeSpan wait) =>
-        new($"Deezer is rate limiting requests (retry in about {wait.TotalSeconds:0}s)", null, HttpStatusCode.TooManyRequests);
+        new($"Deezer is rate limiting requests (retry in about {wait.TotalSeconds:0}s)", null, HttpStatusCode.TooManyRequests)
+        { Data = { ["RetryAfter"] = wait } };
 
     /// <summary>The error object of an answer, or null when the answer is not an error.</summary>
     internal static ErrorBody? ReadError(string body)
